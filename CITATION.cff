@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this specification, please cite it using this metadata."
+title: "Post-OCR Layering Specification"
+authors:
+  - name: "Tabularium AI"
+version: "1.0"
+date-released: "2026-11-17"
+license: Apache-2.0
+repository-code: "https://github.com/TabulariumAI/Post-OCR-Layering"
+url: "https://github.com/TabulariumAI/Post-OCR-Layering/blob/main/Post-OCR-Layering-Spec.md"
+abstract: >-
+  A deterministic, evidence-driven model for reconstructing document structure
+  from recognized text, geometry, and OCR paragraph ownership.

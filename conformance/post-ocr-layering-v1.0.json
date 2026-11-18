@@ -1,0 +1,173 @@
+{
+  "vector_format": "tabularium-post-ocr-layering-conformance",
+  "vector_format_version": 1,
+  "specification_version": "1.0",
+  "normative_specification": "../Post-OCR-Layering-Spec.md",
+  "cases": [
+    {
+      "id": "worked-example-row-ownership",
+      "description": "Worked Example Case A: one paragraph owns both sides of the run.",
+      "page": {"width": 600, "height": 800},
+      "parameters": {
+        "header_fraction": 0.05,
+        "footer_fraction": 0.05,
+        "theta": 0.5,
+        "delta": 1.0,
+        "rho": 0.8,
+        "rho_full_width": 0.9,
+        "minimum_run_rows": 2,
+        "alpha": 0.5,
+        "beta": 1.5,
+        "gamma": 3.0,
+        "default_order": "row"
+      },
+      "words": [
+        {"id": 1, "text": "L1", "box": [72, 100, 180, 110], "source_span": [0, 2], "container": false},
+        {"id": 2, "text": "R1", "box": [300, 100, 360, 110], "source_span": [2, 4], "container": false},
+        {"id": 3, "text": "L2", "box": [73, 120, 195, 130], "source_span": [4, 6], "container": false},
+        {"id": 4, "text": "R2", "box": [302, 120, 370, 130], "source_span": [6, 8], "container": false},
+        {"id": 5, "text": "L3", "box": [72, 140, 170, 150], "source_span": [8, 10], "container": false},
+        {"id": 6, "text": "R3", "box": [301, 140, 365, 150], "source_span": [10, 12], "container": false}
+      ],
+      "lines": [[1, 2], [3, 4], [5, 6]],
+      "paragraphs": [
+        {"id": "p3", "source_intervals": [[0, 12]]}
+      ],
+      "expected": {
+        "geometric_unit": 10.0,
+        "hard_boundaries": [],
+        "zones": [{"id": "U1", "region": "body", "word_ids": [1, 2, 3, 4, 5, 6]}],
+        "runs": [
+          {
+            "id": "Q1",
+            "row_word_ids": [[1, 2], [3, 4], [5, 6]],
+            "gutter": [195, 300],
+            "delta_left": 1.0,
+            "delta_right": 2.0,
+            "minimum_shared_gutter": 105.0,
+            "maximum_row_gap": 1.0,
+            "geo": true,
+            "col": false,
+            "row": true,
+            "decision": "row",
+            "evidence_state": "Agree"
+          }
+        ],
+        "bundles": [{"id": "B1", "word_ids": [1, 2, 3, 4, 5, 6]}],
+        "reading_order": ["B1"]
+      }
+    },
+    {
+      "id": "worked-example-column-ownership",
+      "description": "Worked Example Case B: separate paragraphs own the two sides of the run.",
+      "page": {"width": 600, "height": 800},
+      "parameters": {
+        "header_fraction": 0.05,
+        "footer_fraction": 0.05,
+        "theta": 0.5,
+        "delta": 1.0,
+        "rho": 0.8,
+        "rho_full_width": 0.9,
+        "minimum_run_rows": 2,
+        "alpha": 0.5,
+        "beta": 1.5,
+        "gamma": 3.0,
+        "default_order": "row"
+      },
+      "words": [
+        {"id": 1, "text": "L1", "box": [72, 100, 180, 110], "source_span": [0, 2], "container": false},
+        {"id": 2, "text": "R1", "box": [300, 100, 360, 110], "source_span": [2, 4], "container": false},
+        {"id": 3, "text": "L2", "box": [73, 120, 195, 130], "source_span": [4, 6], "container": false},
+        {"id": 4, "text": "R2", "box": [302, 120, 370, 130], "source_span": [6, 8], "container": false},
+        {"id": 5, "text": "L3", "box": [72, 140, 170, 150], "source_span": [8, 10], "container": false},
+        {"id": 6, "text": "R3", "box": [301, 140, 365, 150], "source_span": [10, 12], "container": false}
+      ],
+      "lines": [[1, 2], [3, 4], [5, 6]],
+      "paragraphs": [
+        {"id": "p1", "source_intervals": [[0, 2], [4, 6], [8, 10]]},
+        {"id": "p2", "source_intervals": [[2, 4], [6, 8], [10, 12]]}
+      ],
+      "expected": {
+        "geometric_unit": 10.0,
+        "hard_boundaries": [],
+        "zones": [{"id": "U1", "region": "body", "word_ids": [1, 2, 3, 4, 5, 6]}],
+        "runs": [
+          {
+            "id": "Q1",
+            "row_word_ids": [[1, 2], [3, 4], [5, 6]],
+            "gutter": [195, 300],
+            "delta_left": 1.0,
+            "delta_right": 2.0,
+            "minimum_shared_gutter": 105.0,
+            "maximum_row_gap": 1.0,
+            "geo": true,
+            "col": true,
+            "row": false,
+            "decision": "col",
+            "evidence_state": "Agree"
+          }
+        ],
+        "bundles": [
+          {"id": "B1", "word_ids": [1, 3, 5]},
+          {"id": "B2", "word_ids": [2, 4, 6]}
+        ],
+        "reading_order": ["B1", "B2"]
+      }
+    },
+    {
+      "id": "worked-example-open-ownership",
+      "description": "Worked Example Case C: one word has undetermined ownership, so geometry uses the configured default.",
+      "page": {"width": 600, "height": 800},
+      "parameters": {
+        "header_fraction": 0.05,
+        "footer_fraction": 0.05,
+        "theta": 0.5,
+        "delta": 1.0,
+        "rho": 0.8,
+        "rho_full_width": 0.9,
+        "minimum_run_rows": 2,
+        "alpha": 0.5,
+        "beta": 1.5,
+        "gamma": 3.0,
+        "default_order": "row"
+      },
+      "words": [
+        {"id": 1, "text": "L1", "box": [72, 100, 180, 110], "source_span": [0, 2], "container": false},
+        {"id": 2, "text": "R1", "box": [300, 100, 360, 110], "source_span": [2, 4], "container": false},
+        {"id": 3, "text": "L2", "box": [73, 120, 195, 130], "source_span": [4, 6], "container": false},
+        {"id": 4, "text": "R2", "box": [302, 120, 370, 130], "source_span": [6, 8], "container": false},
+        {"id": 5, "text": "L3", "box": [72, 140, 170, 150], "source_span": [8, 10], "container": false},
+        {"id": 6, "text": "R3", "box": [301, 140, 365, 150], "source_span": [10, 12], "container": false}
+      ],
+      "lines": [[1, 2], [3, 4], [5, 6]],
+      "paragraphs": [
+        {"id": "p3", "source_intervals": [[0, 10]]}
+      ],
+      "expected": {
+        "geometric_unit": 10.0,
+        "owners": {"1": "p3", "2": "p3", "3": "p3", "4": "p3", "5": "p3", "6": null},
+        "hard_boundaries": [],
+        "zones": [{"id": "U1", "region": "body", "word_ids": [1, 2, 3, 4, 5, 6]}],
+        "runs": [
+          {
+            "id": "Q1",
+            "row_word_ids": [[1, 2], [3, 4], [5, 6]],
+            "gutter": [195, 300],
+            "delta_left": 1.0,
+            "delta_right": 2.0,
+            "minimum_shared_gutter": 105.0,
+            "maximum_row_gap": 1.0,
+            "geo": true,
+            "col": false,
+            "row": false,
+            "decision": "row",
+            "decision_source": "default",
+            "evidence_state": "Open"
+          }
+        ],
+        "bundles": [{"id": "B1", "word_ids": [1, 2, 3, 4, 5, 6]}],
+        "reading_order": ["B1"]
+      }
+    }
+  ]
+}

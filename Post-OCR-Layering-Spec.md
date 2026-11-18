@@ -2,10 +2,20 @@
 
 Prepared by Tabularium AI
 
+- **Version:** 1.0
+- **Status:** Published
+- **Release date:** 2026-11-17
+- **Canonical source:** [TabulariumAI/Post-OCR-Layering](https://github.com/TabulariumAI/Post-OCR-Layering)
+- **License:** [Apache License 2.0](LICENSE)
+
 
 ## Abstract
 
 Post-OCR Layering is a deterministic, evidence-driven model for reconstructing document structure from recognized text and geometry. Each structural decision draws on two independent evidence sources: scale-normalized geometry from box coordinates, and paragraph ownership from OCR paragraph membership. They are resolved by an explicit precedence in which conclusive ownership outranks geometry. Agreement between the sources increases confidence in a decision; divergence is a diagnostic signal that flags risk without requiring ground truth. Thresholds are derived from each page's own statistics, decisions stay local to the zone their evidence supports, and reading order is a precedence graph with a deterministic result. Associations and order are auditable at every decision, and context preservation is scored separately from text preservation. This document presents the mathematical framework; recognition pipelines and parameter values are proprietary.
+
+## Conformance and Normative Scope
+
+Sections 1–8 and 11 define the normative layering, ordering, evaluation, and audit behavior. Sections 9–10 and all notes and examples are informative. A conforming implementation applies the hard-boundary and decision precedence in their stated order, produces the specified bundle partition and deterministic reading order, and produces the audit record required by Section 11. Machine-readable examples are published in [conformance](conformance/README.md).
 
 ## 1. Inputs
 
