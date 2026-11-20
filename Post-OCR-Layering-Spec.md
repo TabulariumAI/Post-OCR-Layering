@@ -5,7 +5,6 @@ Prepared by Tabularium AI
 - **Version:** 1.0
 - **Status:** Published
 - **Release date:** 2026-11-17
-- **Canonical source:** [TabulariumAI/Post-OCR-Layering](https://github.com/TabulariumAI/Post-OCR-Layering)
 - **License:** [Apache License 2.0](LICENSE)
 
 
